@@ -14,5 +14,11 @@
 
 extern t_size strlcpy(char *dst, const char *src, t_size size)
 {
+    t_size i;
 
+    i = 0;
+    while (i <= size)
+    {
+        
+    }
 }
