@@ -6,13 +6,13 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:32:50 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/17 18:39:36 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/21 13:34:22 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*memmove(void *dest_str, const void *src_str, t_size numBytes)
+void	*ft_memmove(void *dest_str, const void *src_str, t_size numBytes)
 {
 	unsigned char	*s;
 	unsigned char	*d;

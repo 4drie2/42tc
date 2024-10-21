@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <string.h>
 
-int	main(void){
-	int	c = 't';
-	printf("ft_isprint : %d\n   isprint : %d\n",ft_isprint(c), isprint(c));
-	return 0;
+int	main(void)
+{
+	char str[] = "Trouve le c(ici) dans la phrase";
+	printf("%s", ft_strchr(str, 'c'));
 }

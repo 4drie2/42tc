@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 12:45:45 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/21 13:37:46 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/21 13:48:46 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/21 14:35:07 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_size	ft_strlen( const char *theString )
+int	ft_toupper(int chara)
 {
-	int	n;
-
-	n = 0;
-	while (theString[n])
-		++n;
-	return (n);
+	if (chara <= 122 && chara >= 97)
+	{
+		chara -= 32;
+	}
+	return (chara);
 }

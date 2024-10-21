@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 12:45:45 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/21 13:37:46 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/21 14:45:21 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/21 16:20:52 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_size	ft_strlen( const char *theString )
+char	*ft_strchr(const char *string, int searchedChar)
 {
-	int	n;
-
-	n = 0;
-	while (theString[n])
-		++n;
-	return (n);
+	while (*string)
+	{
+		if (*string == (char)searchedChar)
+			return ((char *)string);
+		string++;
+	}
+	if (searchedChar == '\0')
+		return ((char *)string);
+	return (0);
 }

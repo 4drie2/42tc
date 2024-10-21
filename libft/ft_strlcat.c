@@ -5,22 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 11:57:18 by abidaux           #+#    #+#             */
-/*   Updated: 2024/08/27 22:29:45 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/21 13:44:41 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/21 14:05:59 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-unsigned int	ft_strlen(char *str)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
+#include "libft.h"
 
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
@@ -47,12 +37,3 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 	else
 		return (res_d + res_s);
 }
-
-/* int	main(void)
-{
-	char	dest[] = "Hello";
-	char	src[] = {" World"};
-	printf("%d\n", ft_strlcat(dest, src, 9));
-	printf("%s", dest);
-	return (0);
-} */
