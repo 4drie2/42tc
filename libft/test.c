@@ -4,10 +4,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-int	main(void)
+int main(void)
 {
-	char	s1[] = "aaabcd";
-	char	s2[] = "aaabbd";
+    char data[] = { 'H', 'e', 'l', 'l', 'o', '\0', 'W', 'o', 'r', 'l', 'd' };
+    char *result = ft_memchr(data, 'o', 11);
 
-	printf("%d", ft_strncmp(s1, s2, 5));
+    if (result)
+        printf("Found 'o' at position: %ld\n", result - data);
+    else
+        printf("'o' not found\n");
+
+    return 0;
 }

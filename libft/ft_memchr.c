@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 14:45:21 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/21 17:27:10 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/21 17:30:08 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/21 18:50:53 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *string, int searchedChar)
+void	*ft_memchr(const void *s, int c, t_size n)
 {
-	while (*string)
+	t_size	i;
+
+	i = 0;
+	while (i < n)
 	{
-		if (*string == (char)searchedChar)
-			return ((char *)string);
-		string++;
+		if (((unsigned char *)s)[i] == (unsigned char)c)
+			return ((void *)((unsigned char *)s + i));
+		++i;
 	}
-	if (searchedChar == '\0')
-		return ((char *)string);
 	return (0);
 }
