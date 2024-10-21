@@ -6,6 +6,8 @@
 
 int	main(void)
 {
-	char str[] = "Trouve le c(ici) dans la phrase";
-	printf("%s", ft_strchr(str, 'c'));
+	char	s1[] = "aaabcd";
+	char	s2[] = "aaabbd";
+
+	printf("%d", ft_strncmp(s1, s2, 5));
 }
