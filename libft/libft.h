@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:01:29 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/21 18:34:09 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/22 12:28:53 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int			ft_toupper(int chara);
 int			ft_tolower(int chara);
 char		*ft_strchr(const char *string, int searchedChar);
 char		*ft_strrchr(const char *string, int searchedChar);
-int			ft_strncmp(char *s1, char *s2, unsigned int n);
+int			ft_strncmp(const char *s1, const char *s2, t_size n);
 void		*ft_memchr(const void *s, int c, t_size n);
+int			ft_memcmp(const void *s1, const void *s2, t_size n);
