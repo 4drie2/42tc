@@ -88,7 +88,7 @@
     return 0;
 } */
 
-char *strnstr(const char *s, const char *find, t_size slen)
+/* char *strnstr(const char *s, const char *find, t_size slen)
 {
 	char c, sc;
 	t_size len;
@@ -161,6 +161,54 @@ int main(void)
     printf("\nTest 9: Searching 'Hello' in first 4 characters:\n");
     printf("   strnstr:   %s\n", strnstr(big, little6, 4) ? strnstr(big, little6, 4) : "Not Found");
     printf("   ft_strnstr:%s\n", ft_strnstr(big, little6, 4) ? ft_strnstr(big, little6, 4) : "Not Found");
+
+    return 0;
+} */
+
+void test_atoi(const char *str)//////////////// FT_ATOI
+{
+    int res_atoi = atoi(str);
+    int res_ft_atoi = ft_atoi(str);
+
+    printf("Testing: \"%s\"\n", str);
+    printf("   atoi:    %d\n", res_atoi);
+    printf("ft_atoi:    %d\n", res_ft_atoi);
+
+    if (res_atoi == res_ft_atoi)
+        printf("   -> Results match!\n");
+    else
+        printf("   -> Results differ!\n");
+
+    printf("\n");
+}
+
+int	main(void)
+{
+    // Test de chaînes valides
+    test_atoi("42");
+    test_atoi("   42");
+    test_atoi("   -42");
+    test_atoi("+42");
+    test_atoi("0");
+    test_atoi("000123");
+    test_atoi("   +0000042");
+
+    // Test de chaînes avec des caractères non numériques
+    test_atoi("42abc");
+    test_atoi("   -42abc");
+    test_atoi("abc42");
+    test_atoi("   +0000042abc123");
+
+    // Test de chaînes avec espaces blancs
+    test_atoi("\t\n\v\f\r  42");  // Espaces blancs variés
+
+    // Test de chaînes invalides ou vides
+    test_atoi("");
+    test_atoi("   ");
+    test_atoi("-");
+    test_atoi("+");
+    test_atoi("--42");
+    test_atoi("++42");
 
     return 0;
 }
