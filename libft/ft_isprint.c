@@ -1,41 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 14:32:50 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/21 13:34:22 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/16 11:56:25 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/23 22:29:27 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest_str, const void *src_str, t_size numBytes)
+int	ft_isprint(int c)
 {
-	unsigned char	*s;
-	unsigned char	*d;
-	t_size			i;
-
-	s = (char *)src_str;
-	d = (char *)dest_str;
-	if (d > s)
-	{
-		while (numBytes > 0)
-		{
-			numBytes--;
-			d[numBytes] = s[numBytes];
-		}
-	}
-	else
-	{
-		i = 0;
-		while (i < numBytes)
-		{
-			d[i] = s[i];
-			i++;
-		}
-	}
-	return (dest_str);
+	return (c >= 32 && c <= 126);
 }

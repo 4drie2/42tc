@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:45:21 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/21 17:27:10 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/24 00:02:07 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ char	*ft_strchr(const char *string, int searchedChar)
 {
 	while (*string)
 	{
-		if (*string == (char)searchedChar)
+		if (*string == (unsigned char)searchedChar)
 			return ((char *)string);
 		string++;
 	}
-	if (searchedChar == '\0')
+	if ((unsigned char)searchedChar == '\0')
 		return ((char *)string);
 	return (0);
 }

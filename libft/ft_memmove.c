@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 11:54:06 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/22 12:32:01 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/17 14:32:50 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/23 22:59:35 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, t_size n)
+void	*ft_memmove(void *dest_str, const void *src_str, t_size numBytes)
 {
-	t_size	i;
+	unsigned char	*s;
+	unsigned char	*d;
+	t_size			i;
 
-	i = 0;
-	while (i < n)
+	s = (unsigned char *)src_str;
+	d = (unsigned char *)dest_str;
+	if (!src_str && !dest_str)
+		return (0);
+	if (d > s)
 	{
-		if (((unsigned char *)s1)[i] != ((unsigned char *)s2)[i])
-			return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
-		i++;
+		while (numBytes-- > 0)
+			d[numBytes] = s[numBytes];
 	}
-	return (0);
+	else
+	{
+		i = 0;
+		while (i < numBytes)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
+	return (dest_str);
 }
-

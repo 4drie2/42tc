@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 16:38:11 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/23 17:16:44 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/19 13:49:21 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/23 23:03:31 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	*ft_strdup(const char *s)
+t_size	ft_strlcpy(char *dst, const char *src, t_size dstsize)
 {
-	char	*cpy;
-	t_size len_s;
+	t_size	i;
+	t_size	srcsize;
 
-	if (s == NULL)
-		return (NULL);
-	len_s = ft_strlen(s);
-	cpy = (char *)malloc(len_s + 1);
-	if (cpy == NULL)
-		return (NULL);
-	ft_memcpy(cpy, s, len_s);
-	cpy[len_s] = '\0';
-	return (cpy);
+	srcsize = ft_strlen(src);
+	i = 0;
+	if (dstsize != 0)
+	{
+		while (src[i] && (i < (dstsize - 1)))
+		{
+			dst[i] = src[i];
+			++i;
+		}
+		dst[i] = '\0';
+	}
+	return (srcsize);
 }

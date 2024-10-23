@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 17:24:14 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/16 17:38:05 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/21 16:27:29 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/24 00:03:53 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, t_size n)
+char	*ft_strrchr(const char *string, int searchedChar)
 {
-	t_size	i;
+	const char	*last;
 
-	i = -1;
-	while (++i < n)
-		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+	last = 0;
+	while (*string)
+	{
+		if (*string == (unsigned char)searchedChar)
+			last = string;
+		string++;
+	}
+	if ((unsigned char)searchedChar == '\0')
+		return ((char *)string);
+	return ((char *)last);
 }
