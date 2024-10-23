@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 19:06:26 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/22 20:55:18 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/23 16:38:11 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/23 17:16:44 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void	*ft_calloc(t_size nmemb, t_size size)
+char	*ft_strdup(const char *s)
 {
+	char	*cpy;
+	t_size len_s;
 
+	if (s == NULL)
+		return (NULL);
+	len_s = ft_strlen(s);
+	cpy = (char *)malloc(len_s + 1);
+	if (cpy == NULL)
+		return (NULL);
+	ft_memcpy(cpy, s, len_s);
+	cpy[len_s] = '\0';
+	return (cpy);
 }

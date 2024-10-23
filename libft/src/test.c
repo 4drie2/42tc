@@ -165,7 +165,7 @@ int main(void)
     return 0;
 } */
 
-void test_atoi(const char *str)//////////////// FT_ATOI
+/* void test_atoi(const char *str)//////////////// FT_ATOI
 {
     int res_atoi = atoi(str);
     int res_ft_atoi = ft_atoi(str);
@@ -209,6 +209,99 @@ int	main(void)
     test_atoi("+");
     test_atoi("--42");
     test_atoi("++42");
+
+    return 0;
+} */
+
+/* void	test_ft_calloc(t_size count, t_size size) {
+    printf("\nTesting ft_calloc with count = %u, size = %u\n", count, size);
+
+    void *ptr = ft_calloc(count, size);
+    void *sys_ptr = calloc(count, size);
+
+    if (ptr == NULL || sys_ptr == NULL) {
+        if (ptr == NULL)
+            printf("   -> ft_calloc: Allocation failed\n");
+        if (sys_ptr == NULL)
+            printf("   -> calloc: Allocation failed\n");
+    } else {
+        if (memcmp(ptr, sys_ptr, count * size) == 0)
+            printf("   -> Memory blocks are identical (ft_calloc works correctly)\n");
+        else
+            printf("   -> Memory blocks differ (ft_calloc is incorrect)\n");
+
+        free(ptr);
+        free(sys_ptr);
+    }
+}
+
+int main(void) {
+    test_ft_calloc(10, 4);
+    test_ft_calloc(5, 1);
+    test_ft_calloc((t_size)-1, 2);
+    test_ft_calloc(0, 1);
+    test_ft_calloc(1, 0);
+    return 0;
+} */
+
+int	main(void)
+{
+    // Test 1 : Chaîne simple
+    const char *str1 = "Hello, World!";
+    char *dup1 = ft_strdup(str1);
+    printf("Original: %s\nDuplicate: %s\n", str1, dup1);
+    if (dup1)
+        free(dup1); // Libérer la mémoire après usage
+
+    // Test 2 : Chaîne vide
+    const char *str2 = "";
+    char *dup2 = ft_strdup(str2);
+    printf("Original (empty): '%s'\nDuplicate (empty): '%s'\n", str2, dup2);
+    if (dup2)
+        free(dup2);
+
+    // Test 3 : Chaîne avec des caractères spéciaux
+    const char *str3 = "This\nis\ta test!";
+    char *dup3 = ft_strdup(str3);
+    printf("Original (special chars): %s\nDuplicate (special chars): %s\n", str3, dup3);
+    if (dup3)
+        free(dup3);
+
+    // Test 4 : Chaîne très longue
+    const char *str4 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel libero felis.";
+    char *dup4 = ft_strdup(str4);
+    printf("Original (long): %s\nDuplicate (long): %s\n", str4, dup4);
+    if (dup4)
+        free(dup4);
+
+    // Test 5 : NULL en entrée (ne devrait pas planter)
+    const char *str5 = NULL;
+    char *dup5 = ft_strdup(str5);
+    if (dup5 == NULL)
+        printf("Test NULL input: Passed (returned NULL)\n");
+    else
+        printf("Test NULL input: Failed\n");
+
+    // Test 6 : Chaîne avec des espaces
+    const char *str6 = "    Leading and trailing spaces    ";
+    char *dup6 = ft_strdup(str6);
+    printf("Original (spaces): '%s'\nDuplicate (spaces): '%s'\n", str6, dup6);
+    if (dup6)
+        free(dup6);
+
+    // Test 7 : Chaîne avec des chiffres et des symboles
+    const char *str7 = "1234567890!@#$%^&*()_+";
+    char *dup7 = ft_strdup(str7);
+    printf("Original (numbers and symbols): %s\nDuplicate (numbers and symbols): %s\n", str7, dup7);
+    if (dup7)
+        free(dup7);
+
+    // Test 8 : Chaîne avec un seul caractère
+    const char *str8 = "A";
+    char *dup8 = ft_strdup(str8);
+    printf("Original (single char): %s\nDuplicate (single char): %s\n", str8, dup8);
+    if (dup8)
+        free(dup8);
 
     return 0;
 }
