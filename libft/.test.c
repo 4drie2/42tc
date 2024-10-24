@@ -244,7 +244,7 @@ int main(void) {
     return 0;
 } */
 
-int	main(void)
+/* int	main(void)
 {
     // Test 1 : Chaîne simple
     const char *str1 = "Hello, World!";
@@ -304,4 +304,4 @@ int	main(void)
         free(dup8);
 
     return 0;
-}
+} */

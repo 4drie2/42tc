@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:01:29 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/23 22:16:37 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/24 14:17:07 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,4 @@ char		*ft_strnstr(const char *big, const char *little, t_size len);
 int			ft_atoi(const char *nptr);
 void		*ft_calloc(t_size nmemb, t_size size);
 char		*ft_strdup(const char *s);
+char		*ft_substr(char const *s, unsigned int start, t_size len);

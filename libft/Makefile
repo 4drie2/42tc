@@ -24,6 +24,7 @@ SRC      := ft_isalpha.c \
 			 ft_strnstr.c \
 			 ft_calloc.c \
 			 ft_strdup.c \
+			 ft_substr.c \
 
 OBJ      := $(SRC:.c=.o)
 ARFLAGS   := rcs
