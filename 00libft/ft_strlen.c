@@ -6,13 +6,13 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:45:45 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/21 13:37:46 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/26 23:41:00 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_size	ft_strlen( const char *theString )
+size_t	ft_strlen( const char *theString )
 {
 	int	n;
 

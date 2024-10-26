@@ -6,17 +6,16 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 14:17:43 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/25 16:55:56 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/26 23:45:03 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_size	size_s1;
-	t_size	size_s2;
+	size_t	size_s1;
+	size_t	size_s2;
 	char	*dest;
 
 	if (!s1 || !s2)

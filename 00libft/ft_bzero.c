@@ -6,13 +6,13 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:07:38 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/16 17:38:06 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/26 23:43:18 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, t_size n)
+void	ft_bzero(void *s, size_t n)
 {
 	while (n--)
 		((unsigned char *)s)[n] = '\0';

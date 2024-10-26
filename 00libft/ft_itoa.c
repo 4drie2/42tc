@@ -6,17 +6,15 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:28:42 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/26 18:38:19 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/26 23:45:12 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
 
-t_size	nb_digit(int n)
+size_t	nb_digit(int n)
 {
-	t_size	i;
+	size_t	i;
 
 	i = 1;
 	while (n >= 10 || n <= -10)
@@ -30,7 +28,7 @@ t_size	nb_digit(int n)
 char	*ft_itoa(int n)
 {
 	char		*str_num;
-	t_size		digits;
+	size_t		digits;
 	long int	num;
 
 	num = n;

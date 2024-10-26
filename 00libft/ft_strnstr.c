@@ -6,16 +6,16 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:53:27 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/22 15:24:45 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/26 23:44:39 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, t_size len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	t_size	h;
-	t_size	i;
+	size_t	h;
+	size_t	i;
 
 	h = 0;
 	i = 0;

@@ -6,15 +6,15 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:24:14 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/23 22:51:33 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/26 23:42:56 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, t_size n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	t_size	i;
+	size_t	i;
 
 	i = -1;
 	if (!dest && !src)

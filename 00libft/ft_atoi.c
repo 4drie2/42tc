@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:56:26 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/22 17:04:21 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/26 23:43:14 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_is_isspace(char s)
 
 int	ft_atoi(const char *nptr)
 {
-	t_size	index;
+	size_t	index;
 	int		sign;
 	int		nbr;
 

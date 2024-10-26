@@ -6,12 +6,11 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 20:57:08 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/26 22:05:06 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/26 23:34:39 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 static void	ft_freeall(char **result, size_t j)
 {

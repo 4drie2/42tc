@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 20:33:10 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/26 20:35:12 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/26 23:46:46 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	t_size	i;
+	size_t	i;
 
 	i = -1;
 	while (s[++i])

@@ -6,12 +6,11 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 17:17:43 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/25 20:48:06 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/26 23:32:34 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 /* char	*ft_strtrim(char const *s1, char const *set)
 {
