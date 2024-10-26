@@ -6,66 +6,80 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 20:57:08 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/26 16:29:21 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/26 22:05:06 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char	**make_dest(char const *str, char delim)
+static void	ft_freeall(char **result, size_t j)
 {
-	int		count;
-	int		in_word;
-	int		i;
-	char	**dest;
+	while (j--)
+		free(result[j]);
+	free(result);
+}
 
-	if (!str)
+static size_t	ft_countab(char const *s, char c)
+{
+	size_t	count;
+	size_t	i;
+
+	i = 0;
+	if (!s)
 		return (0);
 	count = 0;
-	in_word = 0;
-	i = 0;
-	while (str[i])
+	while (s[i])
 	{
-		if (str[i] != delim && in_word == 0)
+		while (s[i] == c)
+			i++;
+		if (s[i])
 		{
-			++count;
-			in_word = 1;
+			count++;
+			while (s[i] && s[i] != c)
+				i++;
 		}
-		else if (str[i] == delim)
-			in_word = 0;
-		++i;
 	}
-	dest = (char **)malloc((count + 1) * sizeof(char *));
-	return (dest);
+	return (count);
+}
+
+static char	**ft_splitinject(char const *s, char c, char **result)
+{
+	size_t	i;
+	size_t	j;
+	size_t	start;
+
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i])
+		{
+			start = i;
+			while (s[i] && s[i] != c)
+				i++;
+			result[j] = ft_substr(s, start, i - start);
+			if (!result[j])
+				return (ft_freeall(result, j), NULL);
+			j++;
+		}
+	}
+	result[j] = NULL;
+	return (result);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**dest;
-	int		i;
-	t_size	word_len;
+	char	**result;
 
-	dest = make_dest(s, c);
-	if (!dest || !s)
-		return (0);
-	i = 0;
-	while (*s)
-	{
-		while (*s == c && *s)
-			s++;
-		if (*s)
-		{
-			if (!ft_strchr(s, c))
-				word_len = ft_strlen(s);
-			else
-				word_len = ft_strchr(s, c) - s;
-			dest[i++] = ft_substr(s, 0, word_len);
-			s += word_len;
-		}
-	}
-	dest[i] = NULL;
-	return (dest);
+	if (!s)
+		return (NULL);
+	result = (char **)malloc((ft_countab(s, c) + 1) * sizeof(char *));
+	if (!result)
+		return (NULL);
+	return (ft_splitinject(s, c, result));
 }
 
 /* cc ft_split.c

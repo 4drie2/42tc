@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:28:42 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/26 17:38:58 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/10/26 18:38:19 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,42 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-char	*make_nb(int n)
+t_size	nb_digit(int n)
 {
-	int		i;
-	char	*nb;
+	t_size	i;
 
-	i = 0;
-	while (n >= 1)
+	i = 1;
+	while (n >= 10 || n <= -10)
 	{
-		++i;
 		n /= 10;
+		++i;
 	}
-	nb = (char *)malloc(n + 1);
-	return (nb);
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*nb;
-	int		i;
+	char		*str_num;
+	t_size		digits;
+	long int	num;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	nb = make_nb(n);
-	i = 0;
-	while (n > 10)
+	num = n;
+	digits = nb_digit(n);
+	if (n < 0)
 	{
-		nb[i] = (n % 10) + '0';
-		n /= 10;
+		num *= -1;
+		digits++;
 	}
-	nb[i] = (n % 10) + '0';
-	nb[i + 1] = '\0';
-	return (nb);
-}
-
-int main(void)
-{
-	printf("%s", ft_itoa(123456));
+	str_num = (char *)malloc(digits + 1);
+	if (!str_num)
+		return (NULL);
+	*(str_num + digits) = 0;
+	while (digits--)
+	{
+		*(str_num + digits) = (num % 10) + '0';
+		num /= 10;
+	}
+	if (n < 0)
+		*(str_num + 0) = '-';
+	return (str_num);
 }

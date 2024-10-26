@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 11:54:10 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/26 21:02:28 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/26 20:35:48 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/26 20:38:18 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+void	ft_putendl_fd(char *s, int fd)
 {
-	return (c >= 0 && c <= 127);
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }
