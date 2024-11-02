@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:02:11 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/02 00:51:30 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/11/02 00:58:48 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@
 # define BUFFER_SIZE 32
 #endif
 
-char	*rd(void)
+char	*gnl(int fd)
 {
 	char		*buffer;
 	static char	*stash;
 	int			nread;
-	int			fd;
 
 	stash = "";
-	fd = open("hello.txt", O_RDONLY);
 	buffer = (char *)malloc(sizeof(char) * (int)BUFFER_SIZE + 1);
 	if (!buffer)
 		return (0);
@@ -39,11 +37,14 @@ char	*rd(void)
 		printf("read=%i, buffer=%s\n", nread, buffer); ///
 	}
 	printf("stash=|%s|\n" ,stash);
-	close(fd);
 	return (stash);
 }
 
 int main(void)
 {
-	rd();
+	int fd;
+
+	fd = open("hello.txt", O_RDONLY);
+	gnl(fd);
+	close(fd);
 }
