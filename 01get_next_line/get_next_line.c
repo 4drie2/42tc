@@ -6,44 +6,44 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:02:11 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/02 17:59:40 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/11/03 17:30:39 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "../00libft/libft.h"
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 32
 #endif
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strdup(const char *s)
 {
-	char	*dest;
+	char	*cpy;
+	size_t	len_s;
 	size_t	i;
 
-	i = 0;
-	if (!s)
+	len_s = ft_strlen(s);
+	cpy = (char *)malloc(len_s + 1);
+	if (cpy == NULL)
+		return (NULL);
+	i = -1;
+	if (!cpy && !cpy)
 		return (0);
-	if (start >= ft_strlen(s))
-		return (0);
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	dest = (char *)malloc(len + 1);
-	if (!dest)
-		return (0);
-	ft_strlcpy(dest, s + start, len + 1);
-	return (dest);
+	while (++i < len_s)
+		((unsigned char *)cpy)[i] = ((unsigned char *)s)[i];
+	cpy[len_s] = '\0';
+	return (cpy);
 }
 
-char	*gnl(int fd)
+char	*get_next_line(int fd)
 {
 	char		*buffer;
 	char		*temp;
 	static char	*stash;
 	int			nread;
 
-	stash = "";
+	if (!stash)
+		stash = "";
 	buffer = (char *)malloc(sizeof(char) * (int)BUFFER_SIZE + 1);
 	if (!buffer)
 		return (0);
@@ -54,22 +54,24 @@ char	*gnl(int fd)
 		if (nread == -1)
 			return (0);
 		stash = ft_strjoin(stash, buffer);
-		printf("read=%i, buffer=%s\n", nread, buffer); ///
+//		printf("read=%i, buffer=%s\n", nread, buffer); ///
 	}
-	printf("\npretemp=|%s|\n", ft_strchr(stash, '\n'));
-	temp = stash;
-	stash = malloc(ft_strlen(stash) - ft_strlen(ft_strchr(stash, '\n')) + 1);
-	ft_strlcpy(stash, ft_strchr(stash, '\n'), ft_strlen(ft_strchr(stash, '\n')));
-	printf("temp=|%s|\n" ,temp);
-	printf("stash=|%s|\n" ,stash);
+//	printf("\npretemp=|%s|\n", ft_strchr(stash, '\n'));
+	temp = ft_strdup(stash);
+	*(temp + ft_strlen(stash) - ft_strlen(ft_strchr(stash, '\n'))) = 0;
+	ft_strlcpy(stash, (ft_strchr(stash, '\n') + 1), ft_strlen(stash));
+//	printf("temp=|%s|\n" ,temp);
+//	printf("stash=|%s|\n" ,stash);
 	return (temp);
 }
 
-int main(void)
+/* int main(void)
 {
 	int fd;
 
 	fd = open("hello.txt", O_RDONLY);
-	gnl(fd);
+	printf("\n\n----main1:----\ngnl=%s\n---------\n", gnl(fd));
+	printf("\n\n----main2:----\ngnl=%s\n---------\n", gnl(fd));
+	printf("\n\n----main3:----\ngnl=%s\n---------\n", gnl(fd));
 	close(fd);
-}
+} */

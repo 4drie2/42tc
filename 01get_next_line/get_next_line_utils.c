@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:02:14 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/02 00:51:35 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/11/03 17:29:09 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*dest;
 
 	if (!s1 || !s2)
-		return (0);
+		return ("");
 	size_s1 = ft_strlen(s1);
 	size_s2 = ft_strlen(s2);
 	dest = (char *)malloc(size_s1 + size_s2 + 1);
