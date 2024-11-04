@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:02:11 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/04 21:34:04 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/11/04 21:55:34 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,29 +75,35 @@ char	*get_next_line(int fd)
 {
 	char		*buffer;
 	char		*temp;
-	static char	*stash;
+	static char	*stash = "";
 	int			nread;
 
-	if (!stash)
-		stash = "";
-	buffer = (char *)malloc(sizeof(char) * (int)BUFFER_SIZE + 1);
+	nread = -1;
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (0);
-	while (!ft_strchr(buffer, '\n'))
+	while (nread != 0 && !ft_strchr(buffer, '\n'))
 	{
 		nread = read(fd, buffer, BUFFER_SIZE);
-		buffer[nread] = '\0';
 		if (nread == -1)
 			return (0);
-		stash = ft_strjoin(stash, buffer);
+		if (nread != 0)
+			buffer[nread] = '\0';
+		if (nread != 0)
+			stash = ft_strjoin(stash, buffer);
 	}
-	temp = ft_strdup(stash);
-	*(temp + ft_strlen(stash) - ft_strlen(ft_strchr(stash, '\n'))) = 0;
-	ft_strlcpy(stash, (ft_strchr(stash, '\n') + 1), ft_strlen(stash));
-	return (temp);
+	if (nread != 0)
+	{
+
+		temp = ft_strdup(stash);
+		*(temp + ft_strlen(stash) - ft_strlen(ft_strchr(stash, '\n'))) = 0;
+		ft_strlcpy(stash, (ft_strchr(stash, '\n') + 1), ft_strlen(stash));
+		return (temp);
+	}
+	return (0);
 }
 
-int main(void)
+/* int main(void)
 {
 	int fd;
 
@@ -106,6 +112,6 @@ int main(void)
 	printf("----main2: gnl=|%s|\n\n", get_next_line(fd));
 	printf("----main3: gnl=|%s|\n\n", get_next_line(fd));
 	printf("----main4: gnl=|%s|\n\n", get_next_line(fd));
-	//printf("\n\n----main5:----\ngnl=%s\n---------\n", get_next_line(fd));
+	printf("----main5: gnl=|%s|\n", get_next_line(fd));
 	close(fd);
-}
+} */
