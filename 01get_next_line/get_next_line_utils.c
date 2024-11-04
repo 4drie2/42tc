@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:02:14 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/03 17:29:09 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/11/04 17:07:20 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,20 +80,21 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 		return (res_d + res_s);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strdup(const char *s)
 {
-	size_t	size_s1;
-	size_t	size_s2;
-	char	*dest;
+	char	*cpy;
+	size_t	len_s;
+	size_t	i;
 
-	if (!s1 || !s2)
-		return ("");
-	size_s1 = ft_strlen(s1);
-	size_s2 = ft_strlen(s2);
-	dest = (char *)malloc(size_s1 + size_s2 + 1);
-	if (!dest)
+	len_s = ft_strlen(s);
+	cpy = (char *)malloc(len_s + 1);
+	if (cpy == NULL)
+		return (NULL);
+	i = -1;
+	if (!cpy && !cpy)
 		return (0);
-	ft_strlcpy(dest, s1, (size_s1 + size_s2 + 1));
-	ft_strlcat(dest, (char *)s2, (size_s1 + size_s2 + 1));
-	return (dest);
+	while (++i < len_s)
+		((unsigned char *)cpy)[i] = ((unsigned char *)s)[i];
+	cpy[len_s] = '\0';
+	return (cpy);
 }
