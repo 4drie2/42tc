@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 20:57:08 by abidaux           #+#    #+#             */
-/*   Updated: 2024/10/26 23:34:39 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/11/05 19:07:39 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,14 @@ char	**ft_split(char const *s, char c)
 	return (ft_splitinject(s, c, result));
 }
 
-/* cc ft_split.c
-ft_strlen.c ft_strchr.c ft_substr.c ft_strdup.c ft_memcpy.c ft_strlcpy.c
-
+/* //cc ft_split.c
+//ft_strlen.c ft_strchr.c ft_substr.c ft_strdup.c ft_memcpy.c ft_strlcpy.c
 #include <stdio.h>
 int main (void)
 {
 	int j = 0;
 	char* str = ",,JAN,FEB,MAR,,,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC,,";
-	char **dest = ft_split(str,',');
+	char **dest = ft_split(str,'\0');
 	while (dest[j])
 	{
 		printf("%s\n", dest[j]);

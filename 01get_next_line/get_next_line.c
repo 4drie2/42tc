@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:02:11 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/04 21:55:34 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/11/05 18:25:30 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,49 +34,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (dest);
 }
 
-/* char	*get_next_line(int fd)
-{
-	char		*buffer;
-	char		*temp;
-	static char	*stash = NULL;
-	int			nread;
-
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
-		return (NULL);
-	while (!ft_strchr(buffer, '\n'))
-	{
-		nread = read(fd, buffer, BUFFER_SIZE);
-		if (nread == -1)
-			free(buffer);
-		if (nread == -1)
-			return (NULL);
-		if (nread != 0)
-			buffer[nread] = '\0';
-		if (nread != 0)
-			stash = ft_strjoin(stash, buffer);
-	}
-	temp = ft_strdup(stash);
-	char *newline_pos = ft_strchr(stash, '\n');
-	if (newline_pos)
-	{
-		char *new_stash = ft_strdup(newline_pos + 1);
-		free(stash);
-		stash = new_stash;
-		if (!stash)
-			free(temp);
-	}
-	else
-		free(stash);
-	return (temp);
-} */
-
 char	*get_next_line(int fd)
 {
 	char		*buffer;
-	char		*temp;
+	char		*line;
 	static char	*stash = "";
 	int			nread;
+	char		*newline;
 
 	nread = -1;
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
@@ -94,16 +58,24 @@ char	*get_next_line(int fd)
 	}
 	if (nread != 0)
 	{
-
-		temp = ft_strdup(stash);
-		*(temp + ft_strlen(stash) - ft_strlen(ft_strchr(stash, '\n'))) = 0;
+		line = ft_strdup(stash);
+		*(line + ft_strlen(stash) - ft_strlen(ft_strchr(stash, '\n'))) = 0;
+		newline = ft_strdup(stash);
+		free(stash);
+		stash = ft_strdup(newline);
+		free(newline);
 		ft_strlcpy(stash, (ft_strchr(stash, '\n') + 1), ft_strlen(stash));
-		return (temp);
+		return (line);
 	}
+	free(buffer);
+	return (0);
+	if (!*str)
+		if (!(*str = (char*)malloc(sizeof(char) * (BUFF_SIZE + 1))))
+			return (-1);
 	return (0);
 }
 
-/* int main(void)
+int main(void)
 {
 	int fd;
 
@@ -114,4 +86,4 @@ char	*get_next_line(int fd)
 	printf("----main4: gnl=|%s|\n\n", get_next_line(fd));
 	printf("----main5: gnl=|%s|\n", get_next_line(fd));
 	close(fd);
-} */
+}
