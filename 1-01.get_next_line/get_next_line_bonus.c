@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:02:11 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/07 21:45:09 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/11/08 15:37:59 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_read(int fd, char *stash)
 {
@@ -77,66 +77,45 @@ char	*ft_rest_line(char *temp, char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[1024];
 	char		*line;
 	char		*temp;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	temp = ft_read(fd, stash);
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
+		return (free(stash), NULL);
+	temp = ft_read(fd, stash[fd]);
 	if (!temp)
 	{
-		if (stash)
-			free(stash);
-		stash = NULL;
+		if (stash[fd])
+			free(stash[fd]);
+		stash[fd] = NULL;
 		return (NULL);
 	}
 	line = ft_line(temp);
-	stash = ft_rest_line(temp, line);
+	stash[fd] = ft_rest_line(temp, line);
 	return (line);
 }
 
-/* int main(void)
+/* int	main(void)
 {
-	int fd;
-
-	fd = open("hello.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	close(fd);
-} */
-
-int main(void)
-{
-	int fd1, fd2, fd3;
-	char *line;
+	int		i;
+	int		fd1;
+	int		fd2;
+	int		fd3;
 
 	fd1 = open("hello.txt", O_RDONLY);
 	fd2 = open("hello1.txt", O_RDONLY);
 	fd3 = open("hello2.txt", O_RDONLY);
-	printf("-----hello.txt:-------------\n");
-	while ((line = get_next_line(fd1)) != NULL)
+	i = 0;
+	while (++i <= 4)
 	{
-		printf("%s", line);
-		free(line);
-	}
-	printf("-----hello1.txt:-------------\n");
-	while ((line = get_next_line(fd2)) != NULL)
-	{
-		printf("%s", line);
-		free(line);
-	}
-	printf("-----hello2.txt:-------------\n");
-	while ((line = get_next_line(fd3)) != NULL)
-	{
-		printf("%s", line);
-		free(line);
+		printf("line [%d]: %s", i, get_next_line(fd1));
+		printf("line [%d]: %s", i, get_next_line(fd2));
+		printf("line [%d]: %s", i, get_next_line(fd3));
+		printf("--------------------\n");
 	}
 	close(fd1);
 	close(fd2);
 	close(fd3);
 	return (0);
-}
+} */
