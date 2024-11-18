@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 20:22:46 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/18 21:10:05 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/11/18 21:15:54 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main (int argc, char **argv)
 {
 	int		pipefd[2];
 	int		pid;
-	char	*buff;
+	char	buff[100];
 
 	if (pipe(pipefd) == -1)
 		return(write(2, "erreur 0", 8), 0);
@@ -35,8 +35,8 @@ int main (int argc, char **argv)
 	else
 	{
 		close(pipefd[1]);
-		read(pipefd[0], buff, 100);
-		write(1, &buff, 100);
+		read(pipefd[0], buff, 5);
+		write(1, &buff, 5);
 		close(pipefd[0]);
 	}
 	return (0);
