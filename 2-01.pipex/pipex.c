@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 20:22:46 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/18 21:15:54 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/11/18 23:07:18 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,23 @@ int main (int argc, char **argv)
 	if (pid == 0)
 	{
 		close (pipefd[0]);
-		write(pipefd[1], "hello", 5);
+		if (dup2(pipefd[1], 1) == -1)
+			return(write(2, "erreur 2", 8), 0);
+		//write(1, "hello", 5);
+		char *root ="/bin/ls"; // root
+		char *cmd[] = {"ls", "-l", NULL};
+		char *envp[] = {NULL};
+		if (execve(root, cmd, envp) == -1)
+			return(write(2, "erreur 3", 8), 0);
 		close(pipefd[1]);
 	}
 	else
 	{
 		close(pipefd[1]);
-		read(pipefd[0], buff, 5);
-		write(1, &buff, 5);
+		if (dup2(pipefd[0], 0) == -1)
+			return(write(2, "erreur 3", 8), 0);
+		read(0, buff, 50);
+		printf("nouveau message :%s\n", buff);
 		close(pipefd[0]);
 	}
 	return (0);
