@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 20:18:10 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/20 18:40:16 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/26 19:43:42 by abidaux           #+#    #+#             */
+/*   Updated: 2024/11/01 18:24:33 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+#include "libft.h"
 
-#include "libft/libft.h"
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	unsigned int	i;
+
+	i = -1;
+	if (s)
+	{
+		while (s[++i])
+			f(i, s + i);
+	}
+}

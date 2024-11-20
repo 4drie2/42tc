@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 20:18:10 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/20 18:40:16 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/21 14:40:02 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/26 23:38:24 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+#include "libft.h"
 
-#include "libft/libft.h"
+int	ft_tolower(int chara)
+{
+	if (chara <= 90 && chara >= 65)
+	{
+		chara += 32;
+	}
+	return (chara);
+}

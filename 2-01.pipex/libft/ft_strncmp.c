@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 20:18:10 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/20 18:40:16 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/21 16:56:04 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/26 23:44:29 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+#include "libft.h"
 
-#include "libft/libft.h"
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned int	i;
+
+	i = 0;
+	if (n == 0)
+		return (0);
+	while ((s1[i] || s2[i]) && i < n - 1 && s1[i] == s2[i])
+		++i;
+	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+}

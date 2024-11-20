@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 20:18:10 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/20 18:40:16 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/21 13:48:46 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/26 23:38:20 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+#include "libft.h"
 
-#include "libft/libft.h"
+int	ft_toupper(int chara)
+{
+	if (chara <= 122 && chara >= 97)
+	{
+		chara -= 32;
+	}
+	return (chara);
+}

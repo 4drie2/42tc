@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 20:18:10 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/20 18:40:16 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/21 16:27:29 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/26 21:02:05 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+#include "libft.h"
 
-#include "libft/libft.h"
+char	*ft_strrchr(const char *string, int searchedChar)
+{
+	const char	*last;
+
+	last = 0;
+	while (*string)
+	{
+		if (*string == (unsigned char)searchedChar)
+			last = string;
+		string++;
+	}
+	if ((unsigned char)searchedChar == '\0')
+		return ((char *)string);
+	return ((char *)last);
+}

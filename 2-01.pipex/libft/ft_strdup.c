@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 20:18:10 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/20 18:40:16 by abidaux          ###   ########.fr       */
+/*   Created: 2024/10/23 16:38:11 by abidaux           #+#    #+#             */
+/*   Updated: 2024/10/26 23:44:53 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+#include "libft.h"
 
-#include "libft/libft.h"
+char	*ft_strdup(const char *s)
+{
+	char	*cpy;
+	size_t	len_s;
+
+	len_s = ft_strlen(s);
+	cpy = (char *)malloc(len_s + 1);
+	if (cpy == NULL)
+		return (NULL);
+	ft_memcpy(cpy, s, len_s);
+	cpy[len_s] = '\0';
+	return (cpy);
+}
