@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 20:22:46 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/20 19:59:20 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:56:48 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	luke(int pipefd[], char **argv)
 	if (execve(root, cmd, NULL) == -1)
 		return ((void)write(2, "erreur 4 - execve 1 impossibe", 29));
 	close(pipefd[1]);
+	close(fd);
+	return (free(root), free(cmd));
 }
 
 void	vador(int pipefd[], char **argv)
@@ -43,6 +45,8 @@ void	vador(int pipefd[], char **argv)
 	if (dup2(pipefd[0], 0) == -1)
 		return ((void)write(2, "erreur 4", 8));
 	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (fd == -1)
+		return ((void)write(2, "erreur 1.2 - file cannot be read", 32));
 	if (dup2(fd, 1) == -1)
 		return ((void)write(2, "erreur 5", 8));
 	cmd = ft_split(argv[3], ' ');
@@ -50,6 +54,8 @@ void	vador(int pipefd[], char **argv)
 	if (execve(root, cmd, NULL) == -1)
 		return ((void)write(2, "erreur 6", 8));
 	close(pipefd[0]);
+	close(fd);
+	return (free(root), free(cmd));
 }
 
 int	main(int argc, char **argv)
@@ -57,8 +63,10 @@ int	main(int argc, char **argv)
 	int	pipefd[2];
 	int	pid;
 
-	if (argc != 5)
-		return (write(2, "erreur 0", 8), 0);
+	/* if (argc != 5)
+		return (write(2, "erreur 0", 8), 0); */
+	if (argc != 5 && (!argv[1] || !argv[2] || !argv[3] || !argv[4]))
+		return (write(2, "Invalid arguments\n", 18), 0);
 	if (pipe(pipefd) == -1)
 		return (write(2, "erreur 0", 8), 0);
 	pid = fork();
