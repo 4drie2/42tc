@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 20:22:46 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/26 16:56:48 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/11/27 21:02:01 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	main(int argc, char **argv)
 	int	pipefd[2];
 	int	pid;
 
-	/* if (argc != 5)
-		return (write(2, "erreur 0", 8), 0); */
+	//if (argc != 5)
+	//	return (write(2, "erreur 0", 8), 0);
 	if (argc != 5 && (!argv[1] || !argv[2] || !argv[3] || !argv[4]))
 		return (write(2, "Invalid arguments\n", 18), 0);
 	if (pipe(pipefd) == -1)
