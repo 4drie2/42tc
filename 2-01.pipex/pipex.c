@@ -6,11 +6,18 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 20:22:46 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/29 23:02:49 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/12/02 20:31:29 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+char **get_paths(char **envp)
+{
+	while (*envp && !(ft_strncmp(*envp, "PATH=", 5) == 0))
+		++envp;
+	return (ft_split(*envp + 5, ':'));
+}
 
 void	luke(int pipefd[], char **argv)
 {
