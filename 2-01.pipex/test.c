@@ -99,39 +99,41 @@ int	main(int argc, char **argv)
 // 					pipe v0 end
 
 
-char *get_path(char *cmd, char **envp)
+char	*get_path(char *cmd, char **envp)
 {
 	char	**paths;
-	char	**original_paths;
 	char	*postpath;
 	char	*path;
+	int		i;
 
+	i = -1;
 	while (*envp && ft_strncmp(*envp, "PATH=", 5))
 		++envp;
 	paths = ft_split(*envp + 5, ':');
-	original_paths = paths;
 	postpath = ft_strjoin("/", cmd);
-	while (*paths)
+	while (paths[++i])
 	{
-		path = ft_strjoin(*paths++, postpath);
+		path = ft_strjoin(paths[i], postpath);
 		if (access(path, X_OK) == 0)
 			break;
 		free(path);
 		path = NULL;
 	}
 	free(postpath);
-	while (*original_paths)
-		free(*original_paths++);
-	free(paths);
+	i = -1;
+	while (paths[++i])
+		free(paths[i]);
 	if (!path)
-		return (free(path), perror("cmd not found in PATH"), NULL);
-	return (path);
+		return (free(paths), perror("cmd not found in PATH"), NULL);
+	return (free(paths), path);
 }
 
 int main (int argc, char **argv, char **envp)
 {
 	char	*path;
 
+	if (argc != 2 || !argv[1] || !envp)
+		return (write(2, "Invalid arguments\n", 18), 0);
 	path = get_path(argv[1], envp);
 	if (!path)
 		return (0);
