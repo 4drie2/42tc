@@ -6,7 +6,7 @@ AR				=	ar
 ARFLAGS 		=	rcs
 RM				=	rm -rf
 
-SRC				=	ppipex
+SRC				=	pipex
 SRCS 			=	$(addsuffix .c, $(SRC))
 
 OBJS			=	$(SRCS:%.c=%.o)
