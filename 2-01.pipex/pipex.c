@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:09:43 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/04 18:10:52 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/12/05 12:50:28 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,58 +33,77 @@ char	*get_path(char *cmd, char **envp)
 		path = NULL;
 	}
 	free(postpath);
-	i = -1;
-	while (paths[++i])
-		free(paths[i]);
+	ft_freestr(paths);
 	if (!path)
-		return (free(paths), perror("cmd not found in PATH"), NULL);
-	return (free(paths), path);
+		return (perror("cmd not found in PATH"), NULL);
+	return (path);
 }
 
-void	luke(int pipefd[], char **argv, char **envp)
+//	char	**cmd;
+//	char	*path;
+//	int		fd;
+//	close(pipefd[0]);
+//	fd = open(argv[1], O_RDONLY);
+//	if (fd == -1)
+//		return ((void)perror("erreur 1 - file cannot be read"));
+//	if (dup2(fd, 0) == -1)
+//		return ((void)perror("erreur 2 - file->fd[0]"));
+//	if (dup2(pipefd[1], 1) == -1)
+//		return ((void)perror("erreur 3 - fd[1]->pipe[1]"));
+//	cmd = ft_split(argv[2], ' ');
+//	path = get_path(cmd[0], envp);
+//	if (execve(path, cmd, envp) == -1)
+//		return ((void)perror("execve 1 failed"));
+//	close(pipefd[1]);
+//	close(fd);
+//	return (free(path), ft_freestr(cmd));
+
+void	execute(char *argv, char **envp)
 {
 	char	**cmd;
-	char	*root;
+	char	*path;
+
+	cmd = ft_split(argv, ' ');
+	path = get_path(cmd[0], envp);
+	if (!path)
+		return (ft_freestr(cmd), free(path), perror("path not found"));
+	if (execve(path, cmd, envp) == -1)
+		return ((void)perror("execve 1 failed"));
+	return (ft_freestr(cmd), free(path));
+}
+
+void	child_process(int *pipefd, char **argv, char **envp)
+{
 	int		fd;
 
 	close(pipefd[0]);
-	fd = open(argv[1], O_RDONLY);
+	fd = open(argv[1], O_RDONLY, 0777);
 	if (fd == -1)
-		return ((void)perror("erreur 1 - file cannot be read"));
+		return ((void)perror("file1 cannot be read"));
 	if (dup2(fd, 0) == -1)
-		return ((void)perror("erreur 2 - file->fd[0]"));
+		return ((void)perror("error dup2 file->fd[0]"));
 	if (dup2(pipefd[1], 1) == -1)
-		return ((void)perror("erreur 3 - fd[1]->pipe[1]"));
-	cmd = ft_split(argv[2], ' ');
-	root = get_path(cmd[0], envp);
-	if (execve(root, cmd, envp) == -1)
-		return ((void)perror("erreur 4 - execve 1 impossibe"));
+		return ((void)perror("error dup2 fd[1]->pipe[1]"));
+	execute(argv[2], envp);
 	close(pipefd[1]);
 	close(fd);
-	return (free(root), free(cmd));
 }
 
-void	vador(int pipefd[], char **argv, char **envp)
+void	parent_process(int *pipefd, char **argv, char **envp)
 {
-	char	**cmd;
-	char	*root;
 	int		fd;
 
 	close(pipefd[1]);
 	if (dup2(pipefd[0], 0) == -1)
 		return ((void)perror("erreur 4"));
-	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd == -1)
 		return ((void)perror("erreur 1.2 - file cannot be read"));
 	if (dup2(fd, 1) == -1)
 		return ((void)perror("erreur 5"));
-	cmd = ft_split(argv[3], ' ');
-	root = get_path(cmd[0], envp);
-	if (execve(root, cmd, envp) == -1)
-		return ((void)perror("erreur 6"));
+	execute(argv[3], envp);
 	close(pipefd[0]);
 	close(fd);
-	return (free(root), free(cmd));
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -93,18 +112,18 @@ int	main(int argc, char **argv, char **envp)
 	int	pid;
 
 	if (argc != 5 && (!argv[1] || !argv[2] || !argv[3] || !argv[4] || !envp))
-		return (perror("Invalid arguments"), 0);
+		return (perror("Bad arg\nEx: ./pipex <in> <cmd1> <cmd2> <out>"), 0);
 	if (pipe(pipefd) == -1)
 		return (perror("erreur 0"), 0);
 	pid = fork();
 	if (pid == -1)
 		return (perror("erreur 1"), 0);
 	if (pid == 0)
-		luke(pipefd, argv, envp);
+		child_process(pipefd, argv, envp);
 	else
 	{
-		vador(pipefd, argv, envp);
 		waitpid(pid, NULL, 0);
+		parent_process(pipefd, argv, envp);
 	}
 	return (0);
 }
