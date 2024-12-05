@@ -1,22 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 20:18:10 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/05 17:23:34 by abidaux          ###   ########.fr       */
+/*   Created: 2024/12/05 17:16:29 by abidaux           #+#    #+#             */
+/*   Updated: 2024/12/05 17:23:46 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+#include "pipex.h"
 
-#include "libft/libft.h"
-char	*get_path(char *cmd, char **envp);

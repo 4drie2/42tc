@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:09:43 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/05 13:07:02 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/12/05 19:02:16 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,6 @@ char	*get_path(char *cmd, char **envp)
 		return (perror("cmd not found in PATH"), NULL);
 	return (path);
 }
-
-//	char	**cmd;
-//	char	*path;
-//	int		fd;
-//	close(pipefd[0]);
-//	fd = open(argv[1], O_RDONLY);
-//	if (fd == -1)
-//		return ((void)perror("erreur 1 - file cannot be read"));
-//	if (dup2(fd, 0) == -1)
-//		return ((void)perror("erreur 2 - file->fd[0]"));
-//	if (dup2(pipefd[1], 1) == -1)
-//		return ((void)perror("erreur 3 - fd[1]->pipe[1]"));
-//	cmd = ft_split(argv[2], ' ');
-//	path = get_path(cmd[0], envp);
-//	if (execve(path, cmd, envp) == -1)
-//		return ((void)perror("execve 1 failed"));
-//	close(pipefd[1]);
-//	close(fd);
-//	return (free(path), ft_freestr(cmd));
 
 void	execute(char *argv, char **envp)
 {
@@ -111,8 +92,8 @@ int	main(int argc, char **argv, char **envp)
 	int	pipefd[2];
 	int	pid;
 
-	if (argc != 5 && (!argv[1] || !argv[2] || !argv[3] || !argv[4] || !envp))
-		return (perror("Bad arg\nEx: ./pipex <in> <cmd1> <cmd2> <out>"), 0);
+	if (argc != 5 || (!argv[1] || !argv[2] || !argv[3] || !argv[4] || !envp))
+		return (perror("Bad argmt\nEx: ./pipex <in> <cmd1> <cmd2> <out>"), 0);
 	if (pipe(pipefd) == -1)
 		return (perror("erreur 0"), 0);
 	pid = fork();

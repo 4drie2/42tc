@@ -1,39 +1,33 @@
 NAME			=	pipex
+#NAME_BONUS		=	pipex_bonus
 
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
-AR				=	ar
-ARFLAGS 		=	rcs
-RM				=	rm -rf
+LIBFT			=	libft/libft.a
 
-SRC				=	pipex
-SRCS 			=	$(addsuffix .c, $(SRC))
+SRCS			=	pipex.c
+#SRCS_BONUS		=	pipex_bonus.c pipex_utils_bonus.c
 
-OBJS			=	$(SRCS:%.c=%.o)
+OBJS			=	$(SRCS:.c=.o)
+#OBJS_BONUS		=	$(SRCS_BONUS:.c=.o)
 
-LIBFT_PATH		=	./libft
-LIBFT			=	$(LIBFT_PATH)/libft.a
+all: $(NAME) $(NAME_BONUS)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
+
+#$(NAME_BONUS): $(OBJS_BONUS)
+#	$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) $(LIBFT)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-all: $(NAME)
-
-$(NAME): $(LIBFT) $(OBJS)
-	cp $(LIBFT) $(NAME)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-
-$(LIBFT):
-	make -C $(LIBFT_PATH) all
-
 clean:
-	make -C $(LIBFT_PATH) clean
-	$(RM) *.o
+	rm -f $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-	make -C $(LIBFT_PATH) fclean
-	$(RM) $(NAME)
+	rm -f $(NAME) $(NAME_BONUS)
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re libft
+.PHONY: all clean fclean re
