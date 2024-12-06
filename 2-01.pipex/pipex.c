@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:09:43 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/05 19:02:16 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/12/06 17:38:08 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*get_path(char *cmd, char **envp)
 	char	*path;
 	int		i;
 
+	if (access(cmd, X_OK) == 0)
+		return (cmd);
 	i = -1;
 	while (*envp && ft_strncmp(*envp, "PATH=", 5))
 		++envp;
@@ -106,5 +108,7 @@ int	main(int argc, char **argv, char **envp)
 		waitpid(pid, NULL, 0);
 		parent_process(pipefd, argv, envp);
 	}
+	close(pipefd[0]);
+	close(pipefd[1]);
 	return (0);
 }
