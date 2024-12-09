@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:09:43 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/06 17:38:08 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/12/09 20:29:42 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	child_process(int *pipefd, char **argv, char **envp)
 	close(pipefd[0]);
 	fd = open(argv[1], O_RDONLY, 0777);
 	if (fd == -1)
-		return ((void)perror("file1 cannot be read"));
+		return ((void)perror("file1 cannot be read"), exit(EXIT_FAILURE));
 	if (dup2(fd, 0) == -1)
 		return ((void)perror("error dup2 file->fd[0]"));
 	if (dup2(pipefd[1], 1) == -1)

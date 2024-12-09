@@ -6,12 +6,11 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:18:10 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/06 14:27:45 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/12/09 19:57:01 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-// #include "gnl/get_next_line_bonus.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>

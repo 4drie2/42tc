@@ -24,31 +24,17 @@ $(NAME_BONUS): $(OBJS_BONUS) $(LIBFT)
 %.o: %.c
 	$(cc) $(CFLAGS) -c $< -o $@
 
+$(LIBFT):
+	$(MAKE) -C libft
+
 clean:
 	rm -f $(OBJS) $(OBJS_BONUS)
+	$(MAKE) -C libft clean
 
 fclean: clean
 	rm -f $(NAME) $(NAME_BONUS)
+	$(MAKE) -C libft fclean
 
 re: fclean all
 
 .PHONY: all bonus clean fclean re
-
-$(NAME): $(OBJS) $(LIBFT)
-	$(cc) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
-
-$(NAME_BONUS): $(OBJS_BONUS) $(LIBFT)
-	$(cc) $(CFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) $(LIBFT)
-
-%.o: %.c
-	$(cc) $(CFLAGS) -c $< -o $@
-
-clean:
-	rm -f $(OBJS) $(OBJS_BONUS)
-
-fclean: clean
-	rm -f $(NAME) $(NAME_BONUS)
-
-re: fclean all
-
-.PHONY: all clean fclean re
