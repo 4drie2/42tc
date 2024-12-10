@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:09:43 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/09 20:29:42 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/12/10 17:23:23 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	execute(char *argv, char **envp)
 	if (!path)
 		return (ft_freestr(cmd), free(path), perror("path not found"));
 	if (execve(path, cmd, envp) == -1)
-		return ((void)perror("execve 1 failed"));
+		return ((void)perror("execve 1 failed"), ft_freestr(cmd), free(path));
 	return (ft_freestr(cmd), free(path));
 }
 
@@ -62,7 +62,7 @@ void	child_process(int *pipefd, char **argv, char **envp)
 	close(pipefd[0]);
 	fd = open(argv[1], O_RDONLY, 0777);
 	if (fd == -1)
-		return ((void)perror("file1 cannot be read"), exit(EXIT_FAILURE));
+		return ((void)perror("file1 cannot be read"));
 	if (dup2(fd, 0) == -1)
 		return ((void)perror("error dup2 file->fd[0]"));
 	if (dup2(pipefd[1], 1) == -1)
