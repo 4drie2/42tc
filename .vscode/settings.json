@@ -1,6 +1,8 @@
 {
 	"files.associations": {
 		"pipex.h": "c",
-		"pipex_bonus.h": "c"
+		"pipex_bonus.h": "c",
+		"functional": "c",
+		"__locale": "c"
 	}
 }

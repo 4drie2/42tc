@@ -2,7 +2,7 @@ NAME = pipex
 NAME_BONUS = pipex_bonus
 
 cc = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 LIBFT = libft/libft.a
 
 SRCS = pipex.c

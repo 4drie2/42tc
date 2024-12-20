@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:09:43 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/10 17:23:23 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/12/19 18:16:37 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	parent_process(int *pipefd, char **argv, char **envp)
 	close(pipefd[1]);
 	if (dup2(pipefd[0], 0) == -1)
 		return ((void)perror("erreur 4"));
-	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return ((void)perror("erreur 1.2 - file cannot be read"));
 	if (dup2(fd, 1) == -1)
