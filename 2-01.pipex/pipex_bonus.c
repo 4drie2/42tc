@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:20:01 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/21 10:25:17 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/12/21 20:11:34 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,56 +50,117 @@ void execute(char *argv, char **envp)
     cmd = ft_split(argv, ' ');
     path = get_path(cmd[0], envp);
     if (!path)
-        return (ft_freestr(cmd), free(path), perror("Command not found"));
+    {
+        ft_freestr(cmd);
+        free(path);
+        perror("Command not found");
+        return;
+    }
     if (execve(path, cmd, envp) == -1)
-        return ((void)perror("execve failed"), ft_freestr(cmd), free(path));
+    {
+        perror("execve failed");
+        ft_freestr(cmd);
+        free(path);
+        return;
+    }
     ft_freestr(cmd);
     free(path);
 }
 
 void child_process(int in_fd, int out_fd, char *cmd, char **envp)
 {
-    if (dup2(in_fd, 0) == -1 || dup2(out_fd, 1) == -1)
-        return ((void)perror("dup2 error"));
+    if (dup2(in_fd, 0) == -1)
+    {
+        perror("dup2 error");
+        return;
+    }
+    if (dup2(out_fd, 1) == -1)
+    {
+        perror("dup2 error");
+        return;
+    }
     execute(cmd, envp);
+}
+
+void handle_pipes_helper(int *pipefd, int *in_fd, char *cmd, char **envp)
+{
+    pid_t pid;
+
+    pid = fork();
+    if (pid == -1)
+    {
+        perror("Fork error");
+        return;
+    }
+    if (pid == 0)
+    {
+        close(pipefd[0]);
+        child_process(*in_fd, pipefd[1], cmd, envp);
+    }
+    close(pipefd[1]);
+    close(*in_fd);
+    *in_fd = pipefd[0];
+}
+
+void handle_pipe_segment(int *in_fd, char *cmd, char **envp)
+{
+    int pipefd[2];
+
+    if (pipe(pipefd) == -1)
+    {
+        perror("Pipe error");
+        return;
+    }
+    handle_pipes_helper(pipefd, in_fd, cmd, envp);
+}
+
+void handle_last_segment(int in_fd, int argc, char **argv, char **envp, int here_doc)
+{
+	int out_fd;
+
+	out_fd = open(argv[argc - 1], O_WRONLY | O_CREAT, 0644);
+	if (out_fd < 0)
+	{
+		perror("Output file error");
+		return;
+	}
+	if (fork() == 0)
+		child_process(in_fd, out_fd, argv[argc - 2], envp);
+	close(in_fd);
+	close(out_fd);
+	while (wait(NULL) > 0);
+	if (!here_doc)
+		return ;
+	out_fd = open(argv[argc - 1], O_WRONLY | O_APPEND, 0644);
+	if (out_fd < 0)
+		return (perror("Output file error"));
+	if (fork() == 0)
+		child_process(in_fd, out_fd, argv[argc - 2], envp);
+	close(in_fd);
+	close(out_fd);
+	while (wait(NULL) > 0);
 }
 
 void handle_pipes(int argc, char **argv, char **envp, int here_doc)
 {
-    int pipefd[2];
-    int in_fd, out_fd;
-    int i = here_doc ? 3 : 2;
-    pid_t pid;
+    int in_fd;
+    int i;
 
-    in_fd = here_doc ? open(".here_doc_tmp", O_RDONLY) : open(argv[1], O_RDONLY);
+    i = here_doc ? 3 : 2;
+    in_fd = open(argv[1], O_RDONLY);
+    if (here_doc)
+        in_fd = open(".here_doc_tmp", O_RDONLY);
     if (in_fd < 0)
-        return (perror("Input file error"));
+    {
+        perror("Input file error");
+        return;
+    }
     while (i < argc - 2)
     {
-        if (pipe(pipefd) == -1)
-            return (perror("Pipe error"));
-        if ((pid = fork()) == -1)
-            return (perror("Fork error"));
-        if (pid == 0)
-        {
-            close(pipefd[0]);
-            child_process(in_fd, pipefd[1], argv[i], envp);
-        }
-        close(pipefd[1]);
-        close(in_fd);
-        in_fd = pipefd[0];
+        handle_pipe_segment(&in_fd, argv[i], envp);
         i++;
     }
-    out_fd = open(argv[argc - 1], here_doc ? (O_WRONLY | O_CREAT | O_APPEND) : (O_WRONLY | O_CREAT | O_TRUNC), 0644);
-    if (out_fd < 0)
-        return (perror("Output file error"));
-    if ((pid = fork()) == -1)
-        return (perror("Fork error"));
-    if (pid == 0)
-        child_process(in_fd, out_fd, argv[argc - 2], envp);
-    close(in_fd);
-    close(out_fd);
-    while (wait(NULL) > 0);
+    handle_last_segment(in_fd, argc, argv, envp, here_doc);
 }
 
 void here_doc_mode(char *limiter)
@@ -109,7 +170,10 @@ void here_doc_mode(char *limiter)
 
     fd = open(".here_doc_tmp", O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd < 0)
-        return (perror("Here_doc temp file error"));
+    {
+        perror("Here_doc temp file error");
+        return;
+    }
     while (1)
     {
         write(1, "heredoc> ", 9);
@@ -129,16 +193,24 @@ void here_doc_mode(char *limiter)
 int main(int argc, char **argv, char **envp)
 {
     if (argc < 5)
-        return (perror("Invalid arguments"), 1);
+    {
+        perror("Invalid arguments");
+        return (1);
+    }
     if (ft_strncmp(argv[1], "here_doc", 8) == 0)
     {
         if (argc < 6)
-            return (perror("Invalid here_doc arguments"), 1);
+        {
+            perror("Invalid here_doc arguments");
+            return (1);
+        }
         here_doc_mode(argv[2]);
         handle_pipes(argc, argv, envp, 1);
         unlink(".here_doc_tmp");
     }
     else
+    {
         handle_pipes(argc, argv, envp, 0);
+    }
     return (0);
 }
