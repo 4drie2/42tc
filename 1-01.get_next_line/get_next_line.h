@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:02:17 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/07 16:42:16 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/12/21 08:10:55 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 # include <stdio.h>
 # include <fcntl.h>
 
-size_t	ft_strlen(char *str);
-char	*ft_strjoin(char *stash, char *buff);
+size_t	gnl_strlen(char *str);
+char	*gnl_strjoin(char *stash, char *buff);
 char	*get_next_line(int fd);
-char	*ft_strchr(const char *string, int searchedChar);
+char	*gnl_strchr(const char *string, int searchedChar);
 
 #endif

@@ -6,62 +6,33 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:16:29 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/06 15:03:33 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/12/21 07:37:45 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-char	*get_path(char *cmd, char **envp)
+void	usage(void)
 {
-	char	**paths;
-	char	*postpath;
-	char	*path;
-	int		i;
-
-	i = -1;
-	while (*envp && ft_strncmp(*envp, "PATH=", 5))
-		++envp;
-	paths = ft_split(*envp + 5, ':');
-	postpath = ft_strjoin("/", cmd);
-	while (paths[++i])
-	{
-		path = ft_strjoin(paths[i], postpath);
-		if (access(path, X_OK) == 0)
-			break ;
-		free(path);
-		path = NULL;
-	}
-	free(postpath);
-	ft_freestr(paths);
-	if (!path)
-		return (perror("cmd not found in PATH"), NULL);
-	return (path);
+	ft_putstr_fd("\033[31mError: Bad argument\n\e[0m", 2);
+	ft_putstr_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <...> <file2>\n", 1);
+	ft_putstr_fd("    ./pipex \"here_doc\" <LIMITER> <cmd> <cmd1> <...> <file>\n", 1);
+	exit(EXIT_SUCCESS);
 }
 
-int	get_next_line(char **line)
+/* Function to open the files with the right flags */
+int	open_file(char *argv, int i)
 {
-	char	*buffer;
-	int		i;
-	int		r;
-	char	c;
+	int	file;
 
-	i = 0;
-	r = 0;
-	buffer = (char *)malloc(10000);
-	if (!buffer)
-		return (-1);
-	r = read(0, &c, 1);
-	while (r && c != '\n' && c != '\0')
-	{
-		if (c != '\n' && c != '\0')
-			buffer[i] = c;
-		i++;
-		r = read(0, &c, 1);
-	}
-	buffer[i] = '\n';
-	buffer[++i] = '\0';
-	*line = buffer;
-	free(buffer);
-	return (r);
+	file = 0;
+	if (i == 0)
+		file = open(argv, O_WRONLY | O_CREAT | O_APPEND, 0777);
+	else if (i == 1)
+		file = open(argv, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	else if (i == 2)
+		file = open(argv, O_RDONLY, 0777);
+	if (file == -1)
+		error();
+	return (file);
 }

@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 LIBFT = libft/libft.a
 
 SRCS = pipex.c
-SRCS_BONUS = pipex_bonus.c pipex_utils_bonus.c
+SRCS_BONUS = pipex_bonus.c ../1-01.get_next_line/get_next_line.c ../1-01.get_next_line/get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)

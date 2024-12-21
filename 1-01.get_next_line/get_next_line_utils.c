@@ -6,13 +6,13 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:02:14 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/07 18:06:18 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/12/21 08:11:01 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*gnl_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 
@@ -24,21 +24,21 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-char	*ft_strdup(const char *s)
+char	*gnl_strdup(const char *s)
 {
 	char	*cpy;
 	size_t	len_s;
 
-	len_s = ft_strlen((char *)s);
+	len_s = gnl_strlen((char *)s);
 	cpy = (char *)malloc(len_s + 1);
 	if (cpy == NULL)
 		return (NULL);
-	ft_memcpy(cpy, s, len_s);
+	gnl_memcpy(cpy, s, len_s);
 	cpy[len_s] = '\0';
 	return (cpy);
 }
 
-char	*ft_strchr(const char *string, int searchedChar)
+char	*gnl_strchr(const char *string, int searchedChar)
 {
 	if (!string)
 		return (NULL);
@@ -53,7 +53,7 @@ char	*ft_strchr(const char *string, int searchedChar)
 	return (NULL);
 }
 
-size_t	ft_strlen(char *str)
+size_t	gnl_strlen(char *str)
 {
 	size_t	i;
 
@@ -63,7 +63,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*gnl_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -72,8 +72,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1)
-		s1 = ft_strdup("");
-	temp = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+		s1 = gnl_strdup("");
+	temp = malloc(sizeof(char) * (gnl_strlen(s1) + gnl_strlen(s2) + 1));
 	if (!temp)
 		return (NULL);
 	i = -1;

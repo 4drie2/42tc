@@ -6,19 +6,19 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:02:11 by abidaux           #+#    #+#             */
-/*   Updated: 2024/11/08 15:37:30 by abidaux          ###   ########.fr       */
+/*   Updated: 2024/12/21 08:10:53 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_read(int fd, char *stash)
+char	*gnl_read(int fd, char *stash)
 {
 	char	*buffer;
 	int		nread;
 
 	nread = 1;
-	while (!ft_strchr(stash, '\n') && nread != 0)
+	while (!gnl_strchr(stash, '\n') && nread != 0)
 	{
 		buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (!buffer)
@@ -27,12 +27,12 @@ char	*ft_read(int fd, char *stash)
 		if ((!stash && nread == 0) || nread == -1)
 			return (free(buffer), NULL);
 		buffer[nread] = '\0';
-		stash = ft_strjoin(stash, buffer);
+		stash = gnl_strjoin(stash, buffer);
 	}
 	return (stash);
 }
 
-char	*ft_line(char *temp)
+char	*gnl_line(char *temp)
 {
 	char	*line;
 	int		i;
@@ -55,19 +55,19 @@ char	*ft_line(char *temp)
 	return (line);
 }
 
-char	*ft_rest_line(char *temp, char *line)
+char	*gnl_rest_line(char *temp, char *line)
 {
 	char	*rest;
 	int		i;
 	int		j;
 
-	i = ft_strlen(line);
+	i = gnl_strlen(line);
 	if (!temp[i])
 		return (free(temp), NULL);
-	rest = malloc(sizeof(char) * (ft_strlen(temp) + 1));
+	rest = malloc(sizeof(char) * (gnl_strlen(temp) + 1));
 	if (!rest)
 		return (NULL);
-	i = ft_strlen(line);
+	i = gnl_strlen(line);
 	j = 0;
 	while (temp[i])
 		rest[j++] = temp[i++];
@@ -83,7 +83,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (free(stash), NULL);
-	temp = ft_read(fd, stash);
+	temp = gnl_read(fd, stash);
 	if (!temp)
 	{
 		if (stash)
@@ -91,8 +91,8 @@ char	*get_next_line(int fd)
 		stash = NULL;
 		return (NULL);
 	}
-	line = ft_line(temp);
-	stash = ft_rest_line(temp, line);
+	line = gnl_line(temp);
+	stash = gnl_rest_line(temp, line);
 	return (line);
 }
 
