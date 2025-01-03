@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:01:00 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/12 15:52:13 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/01/03 20:55:28 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,36 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct PeopleList {
-	char *name;
-	int age;
-	struct PeopleList *next;
+struct cellule
+{
+	int		a;
+	struct	cellule *suiv;
 };
 
-int main(void){
-	struct PeopleList *MyList;
+int main(int argc, char **argv)
+{
+	struct cellule *p, *q, *tete=NULL;
+	int i;
 
-	MyList = malloc(sizeof(struct PeopleList));
-	if (!MyList)
-		return (perror("malloc MyList"), 0);
+	i = 0;
+	while (++i < argc)
+	{
+		p = (struct cellule *)malloc(sizeof(struct cellule));
+		p->a = atoi(argv[i]);
+		p->suiv = NULL;
+		if (tete == NULL)
+			tete = p;
+		else
+			q->suiv = p;
+		q = p;
+	}
+	printf("Elements de la liste : ");
+	q = tete;
+	while (q != NULL)
+	{
+		printf("%d ", q->a);
+		q = q->suiv;
+	}
+	printf("\n");
 	return (0);
 }
