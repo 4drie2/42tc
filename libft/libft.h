@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:01:29 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/05 11:11:58 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/01/11 16:20:57 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdio.h>
+
+typedef struct cellule
+{
+	int				a;
+	struct cellule	*next;
+}	t_lsc;
 
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
@@ -52,3 +58,5 @@ void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 void		ft_freestr(char **str);
+void		new_end(t_lsc **head, int value);
+void		free_list(t_lsc *head);

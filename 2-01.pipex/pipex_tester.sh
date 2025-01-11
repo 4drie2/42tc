@@ -68,7 +68,7 @@ printf ${YELLOW}"\n\t\t\t\t\t   TEST CREATED BY: ";
 printf ${CYAN}"\e[4m\e[1mETAQUET / 0xysan\e[0m\t\n";
 printf ${BLUE}"\n------------------------------------------------------------------------------------------------------------------------\n";
 
-rm -f out test_file_nb_3 test_file_nb_6 rpipex fpipex r1pipex r2pipex traces.txt
+rm -f out test_file_nb_3 test_file_nb_6 rpipex fpipex r1pipex r2pipex
 
 # -=-=-=-=-	Control errors -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 

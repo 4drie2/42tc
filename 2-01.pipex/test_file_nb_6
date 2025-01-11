@@ -1,0 +1,15 @@
+total 132
+drwxr-xr-x 2 abidaux 2024_le-havre  4096 Dec 21 19:25 libft
+-rw-r--r-- 1 abidaux 2024_le-havre   737 Dec 21 10:35 Makefile
+-rw-r--r-- 1 abidaux 2024_le-havre     2 Dec 21 19:26 o.txt
+-rw-r--r-- 1 abidaux 2024_le-havre   764 Jan  7 18:44 out
+-rw-r--r-- 1 abidaux 2024_le-havre     4 Jan  7 18:44 outC
+-rwxr-xr-x 1 abidaux 2024_le-havre 23632 Jan  7 18:15 pipex
+-rw-r--r-- 1 abidaux 2024_le-havre  3149 Dec 19 18:16 pipex.c
+-rw-r--r-- 1 abidaux 2024_le-havre  1059 Dec 21 08:02 pipex.h
+-rw-rw-r-- 1 abidaux 2024_le-havre 63788 Jan  7 18:14 pipex_tester.sh
+-rw-r--r-- 1 abidaux 2024_le-havre   764 Jan  7 18:35 test_file_nb_3
+-rw-r--r-- 1 abidaux 2024_le-havre     0 Jan  7 18:44 test_file_nb_6
+-rw-r--r-- 1 abidaux 2024_le-havre   903 Jan  7 18:44 test_file_nb_6C
+-rw-r--r-- 1 abidaux 2024_le-havre   284 Jan  7 18:15 test_file.txt
+-rw-r--r-- 1 abidaux 2024_le-havre     2 Jan  7 18:15 usr_path

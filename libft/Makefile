@@ -36,6 +36,7 @@ SRC      := ft_isalpha.c \
 			 ft_putendl_fd.c \
 			 ft_putnbr_fd.c \
 			 ft_freestr.c \
+			 ft_lsc.c \
 
 OBJ      := $(SRC:.c=.o)
 ARFLAGS   := rcs

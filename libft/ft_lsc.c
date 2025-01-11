@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_lsc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:01:00 by abidaux           #+#    #+#             */
-/*   Updated: 2025/01/11 16:07:19 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/01/11 16:20:59 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-typedef struct cellule
-{
-	int				a;
-	struct cellule	*next;
-}	t_lsc;
+#include "libft.h"
 
 void	new_end(t_lsc **head, int value)
 {
@@ -41,18 +33,6 @@ void	new_end(t_lsc **head, int value)
 	temp->next = new;
 }
 
-void	print_list(t_lsc *head)
-{
-	t_lsc	*temp;
-
-	temp = head;
-	while (temp)
-	{
-		printf("%d\n", temp->a);
-		temp = temp->next;
-	}
-}
-
 void	free_list(t_lsc *head)
 {
 	t_lsc	*temp;
@@ -63,18 +43,4 @@ void	free_list(t_lsc *head)
 		head = head->next;
 		free(temp);
 	}
-}
-
-int	main(void)
-{
-	int		i;
-	t_lsc	*tabc;
-
-	tabc = malloc(sizeof(t_lsc));
-	i = 4;
-	tabc->a = i++;
-	while (i <= 10)
-		new_end(&tabc, i++);
-	print_list(tabc);
-	free_list(tabc);
 }
