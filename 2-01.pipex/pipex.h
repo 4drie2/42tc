@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:18:10 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/21 08:02:38 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/01/13 17:14:43 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,5 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+
+#define CMD "cmd not in PATH"

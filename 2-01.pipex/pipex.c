@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:09:43 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/19 18:16:37 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/01/13 18:53:12 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*get_path(char *cmd, char **envp)
 	i = -1;
 	while (*envp && ft_strncmp(*envp, "PATH=", 5))
 		++envp;
+	if (!*envp)
+		return (perror("PATH not in find evnp"), NULL);
 	paths = ft_split(*envp + 5, ':');
 	postpath = ft_strjoin("/", cmd);
 	while (paths[++i])
@@ -34,11 +36,9 @@ char	*get_path(char *cmd, char **envp)
 		free(path);
 		path = NULL;
 	}
-	free(postpath);
-	ft_freestr(paths);
-	if (!path)
-		return (perror("cmd not found in PATH"), NULL);
-	return (path);
+	if (!path || !*path)
+		return (free(postpath), ft_freestr(paths), perror(CMD), NULL);
+	return (free(postpath), ft_freestr(paths), path);
 }
 
 void	execute(char *argv, char **envp)
@@ -81,7 +81,7 @@ void	parent_process(int *pipefd, char **argv, char **envp)
 		return ((void)perror("erreur 4"));
 	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
-		return ((void)perror("erreur 1.2 - file cannot be read"));
+		return ((void)perror("erreur 1.4 - outfile error"));
 	if (dup2(fd, 1) == -1)
 		return ((void)perror("erreur 5"));
 	execute(argv[3], envp);
@@ -102,13 +102,17 @@ int	main(int argc, char **argv, char **envp)
 	if (pid == -1)
 		return (perror("erreur 1"), 0);
 	if (pid == 0)
-		child_process(pipefd, argv, envp);
-	else
 	{
-		waitpid(pid, NULL, 0);
-		parent_process(pipefd, argv, envp);
+		pid = fork();
+		if (pid == -1)
+			return (perror("erreur 2"), 0);
+		if (pid == 0)
+			child_process(pipefd, argv, envp);
+		else
+		{
+			waitpid(pid, NULL, 0);
+			parent_process(pipefd, argv, envp);
+		}
 	}
-	close(pipefd[0]);
-	close(pipefd[1]);
-	return (0);
+	return (close(pipefd[0]), close(pipefd[1]), 0);
 }

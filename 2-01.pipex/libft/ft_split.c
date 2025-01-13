@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 20:57:08 by abidaux           #+#    #+#             */
-/*   Updated: 2024/12/19 18:16:37 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/01/13 17:09:41 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	**ft_split(char const *s, char c)
 {
 	char	**result;
 
-	if (!s)
+	if (!s || !*s)
 		return (NULL);
 	if (ft_strncmp(s, " ", 1) == 0)
 		return (NULL);
