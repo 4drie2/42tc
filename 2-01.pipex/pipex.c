@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:09:43 by abidaux           #+#    #+#             */
-/*   Updated: 2025/01/13 18:53:12 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/01/16 18:48:00 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,27 +92,23 @@ void	parent_process(int *pipefd, char **argv, char **envp)
 int	main(int argc, char **argv, char **envp)
 {
 	int	pipefd[2];
-	int	pid;
+	int	pid1;
+	int	pid2;
 
 	if (argc != 5 || (!argv[1] || !argv[2] || !argv[3] || !argv[4] || !envp))
 		return (perror("Bad argmt\nEx: ./pipex <in> <cmd1> <cmd2> <out>"), 0);
 	if (pipe(pipefd) == -1)
 		return (perror("erreur 0"), 0);
-	pid = fork();
-	if (pid == -1)
-		return (perror("erreur 1"), 0);
-	if (pid == 0)
-	{
-		pid = fork();
-		if (pid == -1)
-			return (perror("erreur 2"), 0);
-		if (pid == 0)
-			child_process(pipefd, argv, envp);
-		else
-		{
-			waitpid(pid, NULL, 0);
-			parent_process(pipefd, argv, envp);
-		}
-	}
+	pid1 = fork();
+	if (pid1 == -1)
+		return (perror("pid fork erreur 1"), 0);
+	if (pid1 == 0)
+		child_process(pipefd, argv, envp);
+	pid2 = fork();
+	if (pid2 == -1)
+		return (perror("pid fork erreur 2"), 0);
+	if (pid2 == 0)
+		parent_process(pipefd, argv, envp);
+	waitpid(pid1, NULL, 0);
 	return (close(pipefd[0]), close(pipefd[1]), 0);
 }
