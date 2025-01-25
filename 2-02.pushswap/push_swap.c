@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:01:00 by abidaux           #+#    #+#             */
-/*   Updated: 2025/01/11 16:07:19 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/01/23 12:08:33 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 typedef struct cellule
 {
 	int				a;
+	struct cellule	*prev;
 	struct cellule	*next;
 }	t_lsc;
 
@@ -29,6 +30,7 @@ void	new_end(t_lsc **head, int value)
 	if (!new)
 		return (perror("malloc "));
 	new->a = value;
+	new->prev = NULL;
 	new->next = NULL;
 	if (!*head)
 	{
@@ -39,6 +41,7 @@ void	new_end(t_lsc **head, int value)
 	while (temp->next)
 		temp = temp->next;
 	temp->next = new;
+	new->prev = temp;
 }
 
 void	print_list(t_lsc *head)
