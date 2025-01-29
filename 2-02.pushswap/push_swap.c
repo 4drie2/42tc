@@ -42,7 +42,7 @@ void	new_end(t_lsc **head, int value)
 		temp = temp->next;
 	temp->next = new;
 	new->prev = temp;
-}
+ }
 
 void	print_list(t_lsc *head)
 {

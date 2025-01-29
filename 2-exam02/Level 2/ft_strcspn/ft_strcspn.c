@@ -31,7 +31,7 @@ size_t ab_strcspn(char *s, char *reject)
 			if (*s == reject[i++])
 				return count;
 		count++;
-		s++;
+		s++;	
 	}
 	return count;
 }

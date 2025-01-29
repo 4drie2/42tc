@@ -19,3 +19,20 @@ size_t	ft_strspn(const char *s, const char *accept)
     }
     return (count);
 }
+
+size_t ab_strspn(const char *s, const char *accept){
+    int count = 0;
+    int i;
+
+    while (*s)
+    {
+        i = 0;
+        while (accept[i] && *s != accept[i])
+            i++;
+        if (accept[i] == '\0')
+            return count;
+        count++;
+        s++;
+    }
+    return count;
+}
