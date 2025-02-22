@@ -46,3 +46,65 @@ char	*ft_itoa(int nbr)
 	}
 	return (cnum);
 }
+
+#include <stdlib.h>
+#include <limits.h>
+#include <string.h>
+
+char *ft_itoa(int n) {
+    char *str;
+    int len = 0;
+    int is_negative = 0;
+    int temp;
+
+    /* Cas particulier : n vaut 0 */
+    if (n == 0) {
+        str = malloc(2); /* "0" + '\0' */
+        if (!str)
+            return NULL;
+        str[0] = '0';
+        str[1] = '\0';
+        return str;
+    }
+
+    /* Cas particulier : n vaut INT_MIN */
+    if (n == INT_MIN) {
+        str = malloc(12); /* "-2147483648" + '\0' */
+        if (!str)
+            return NULL;
+        strcpy(str, "-2147483648");
+        return str;
+    }
+
+    /* Gestion du signe */
+    if (n < 0) {
+        is_negative = 1;
+        n = -n;  /* Maintenant, n est positif */
+    }
+
+    /* Calcul de la longueur nécessaire */
+    temp = n;
+    while (temp != 0) {
+        len++;
+        temp /= 10;
+    }
+    if (is_negative)
+        len++;  /* Espace pour le '-' */
+
+    /* Allocation de la chaîne */
+    str = malloc(len + 1);
+    if (!str)
+        return NULL;
+    str[len] = '\0';
+
+    /* Remplissage de la chaîne de droite à gauche */
+    while (n != 0) {
+        str[--len] = (n % 10) + '0';
+        n /= 10;
+    }
+    if (is_negative)
+        str[0] = '-';
+
+    return str;
+}
+

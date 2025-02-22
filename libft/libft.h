@@ -60,3 +60,4 @@ void		ft_putnbr_fd(int n, int fd);
 void		ft_freestr(char **str);
 void		new_end(t_lsc **head, int value);
 void		free_list(t_lsc *head);
+int			ft_printf(const char *god, ...);

@@ -87,17 +87,3 @@ int	ft_printf(const char *god, ...)
 	va_end(args);
 	return (return_value);
 }
-
-/*int main()
-{
-	int a = 42;
-	int *b = &a;
-
-	printf(" | %d\n", ft_printf("Hello %s %c", "World", '!'));
-	printf(" | %d\n\n",  printf("Hello %s %c", "World", '!'));
-	printf(" | %d\n",  ft_printf("%s%p", (char *)NULL, (void *)NULL));
-	printf(" | %d\n\n",   printf("%s%p", (char *)NULL, (void *)NULL));
-	printf(" | %d\n", ft_printf("pointer of %d%u =%p", a, 24, &b));
-	printf(" | %d\n",  printf("pointer of %d%u =%p", a, 24, &b));
-	return 0;
-}*/

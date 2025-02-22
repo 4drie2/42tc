@@ -5,79 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 18:01:00 by abidaux           #+#    #+#             */
-/*   Updated: 2025/01/23 12:08:33 by abidaux          ###   ########.fr       */
+/*   Created: 2025/02/22 16:28:07 by abidaux           #+#    #+#             */
+/*   Updated: 2025/02/22 16:39:31 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "push_swap.h"
 
-typedef struct cellule
+int main(int ac, char **av)
 {
-	int				a;
-	struct cellule	*prev;
-	struct cellule	*next;
-}	t_lsc;
+	t_stack_node	*a;
+	t_stack_node	*b;
 
-void	new_end(t_lsc **head, int value)
-{
-	t_lsc	*new;
-	t_lsc	*temp;
-
-	new = malloc(sizeof(t_lsc));
-	if (!new)
-		return (perror("malloc "));
-	new->a = value;
-	new->prev = NULL;
-	new->next = NULL;
-	if (!*head)
+	a = NULL;
+	b = NULL;
+	if (ac == 1 || (ac == 2 && !av[1][0]))
+		return (1);
+	else if (ac == 2)
+		av = ft_split(av[1], ' ');
+	init_stack_a(&a, av + 1);
+	if (!stack_sorted(a))
 	{
-		*head = new;
-		return ;
+		if (stack_len(a) == 2)
+			sa(&a, false);
+		else if (stack_len(a) == 3)
+			sort_three(&a);
+		else
+			sort_stacks(&a, &b);
 	}
-	temp = *head;
-	while (temp->next)
-		temp = temp->next;
-	temp->next = new;
-	new->prev = temp;
- }
-
-void	print_list(t_lsc *head)
-{
-	t_lsc	*temp;
-
-	temp = head;
-	while (temp)
-	{
-		printf("%d\n", temp->a);
-		temp = temp->next;
-	}
-}
-
-void	free_list(t_lsc *head)
-{
-	t_lsc	*temp;
-
-	while (head)
-	{
-		temp = head;
-		head = head->next;
-		free(temp);
-	}
-}
-
-int	main(void)
-{
-	int		i;
-	t_lsc	*tabc;
-
-	tabc = malloc(sizeof(t_lsc));
-	i = 4;
-	tabc->a = i++;
-	while (i <= 10)
-		new_end(&tabc, i++);
-	print_list(tabc);
-	free_list(tabc);
+	free_stack(&a);
+	return (0);
 }
