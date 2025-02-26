@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:28:07 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/22 18:37:19 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/02/26 18:00:21 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ bool	stack_sorted(t_stack_node **head)
 		temp = temp->next;
 	}
 	return (true);
+}
+
+void	sort_three(t_stack_node **head)
+{
+
 }
 
 int main(int ac, char **av)

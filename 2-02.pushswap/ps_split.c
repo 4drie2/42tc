@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 18:37:35 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/24 19:43:01 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/02/26 18:00:21 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	**ps_split(char *s, char c)
 		if (i == 0)
 		{
 			result_array[i] = malloc(sizeof(char));
-			if (!result_array[i])
+			if (!result_array[i ])
 				return (NULL);
 			result_array[i++][0] = '\0';
 			continue;
