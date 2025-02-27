@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   rotate_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 19:51:06 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/26 19:58:40 by abidaux          ###   ########.fr       */
+/*   Created: 2025/02/27 16:45:19 by abidaux           #+#    #+#             */
+/*   Updated: 2025/02/27 16:52:03 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 static void	rotate(t_stack_node **stack)
 {
 	t_stack_node	*last_node;
+	int				len;
 
-	if (!*stack || !(*stack)->next)
+	len = stack_len(*stack);
+	if (!*stack || !stack || len == 1)
 		return ;
-	last_node = find_last(*stack);
+	last_node = find_last_node(*stack);
 	last_node->next = *stack;
 	*stack = (*stack)->next;
 	(*stack)->prev = NULL;
@@ -26,24 +28,24 @@ static void	rotate(t_stack_node **stack)
 	last_node->next->next = NULL;
 }
 
-void	ra(t_stack_node **a, bool print)
+void	ra(t_stack_node **a, bool checker)
 {
 	rotate(a);
-	if (!print)
-		ft_printf("ra\n");
+	if (!checker)
+		write(1, "ra\n", 3);
 }
 
-void	rb(t_stack_node **b, bool print)
+void	rb(t_stack_node **b, bool checker)
 {
 	rotate(b);
-	if (!print)
-		ft_printf("rb\n");
+	if (!checker)
+		write(1, "rb\n", 3);
 }
 
-void	rr(t_stack_node **a, t_stack_node, **b, bool print)
+void	rr(t_stack_node **a, t_stack_node **b, bool checker)
 {
 	rotate(a);
 	rotate(b);
-	if (!print)
-		ft_printf("rr\n");
+	if (!checker)
+		write(1, "rr\n", 3);
 }

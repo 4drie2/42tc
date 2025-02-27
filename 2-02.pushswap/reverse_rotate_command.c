@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_rotate.c                                       :+:      :+:    :+:   */
+/*   reverse_rotate_command.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 19:43:14 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/26 19:51:30 by abidaux          ###   ########.fr       */
+/*   Created: 2025/02/27 16:32:19 by abidaux           #+#    #+#             */
+/*   Updated: 2025/02/27 16:44:57 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	rev_rotate(t_stack_node **stack)
+static void	reverse_rotate(t_stack_node **stack)
 {
 	t_stack_node	*last;
+	int				len;
 
-	if (!*stack || !(*satck)->next)
+	len = stack_len(*stack);
+	if (!*stack || !stack || len == 1)
 		return ;
-	last = find_last(*stack);
+	last = find_last_nodes(*stack);
 	last->prev->next = NULL;
 	last->next = *stack;
 	last->prev = NULL;
@@ -26,24 +28,24 @@ static void	rev_rotate(t_stack_node **stack)
 	last->next->prev = last;
 }
 
-void	rra(t_stack_node **a, bool print)
+void	rra(t_stack_node **a, bool checker)
 {
-	rev_rotate(a);
-	if (!print)
-		ft_printf("rra\n");
+	reverse_rotate(a);
+	if (!checker)
+		write(1, "rra\n", 4);
 }
 
-void	rrb(t_stack_node **b, bool print)
+void	rrb(t_stack_node **b, bool checker)
 {
-	rev_rotate(b);
-	if (!print)
-		ft_printf("rrb\n");
+	reverse_rotate(b);
+	if (!checker)
+		write(1, "rrb\n", 4);
 }
 
-void	rrr(t_stack_node **a, t_stack_node **b, bool print)
+void rrr(t_stack_node **a, t_stack_node **b, bool checker)
 {
-	rev_rotate(a);
-	rev_rotate(b);
-	if (!print)
-		ft_printf("rrr\n");
+	reverse_rotate(a);
+	reverse_rotate(b);
+	if (!checker)
+		write(1, "rrr\n", 4);
 }

@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_three.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 16:28:43 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/25 16:32:38 by abidaux          ###   ########.fr       */
+/*   Created: 2025/02/27 09:54:14 by abidaux           #+#    #+#             */
+/*   Updated: 2025/02/27 14:20:17 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swapc."
+#include "push_swap.h"
 
-void	sort_three(t_stack_node **a)
+int	main(int ac, char **av)
 {
-	t_stack_node	*biggest_node;
+	t_stack_node	*a;
+	t_stack_node	*b;
 
-	biggest_node = find_max(*a);
-	if (biggest_node == *a)
-		ra(a, false);
-	else if ((*a)->next == biggest_node)
-		rra(a, false);
-	if ((*a)->nbr > (*a)->next->nbr)
-		sa(a, false);
+	a = NULL;
+	b = NULL;
+	if (ac == 1 || (ac == 2 && !av[1][0]))
+		return (1);
+	else if (ac == 2)
+		av = ft_split(av[1], ' ');
+	stack_init(&a, av + 1, ac == 2);
+	if (!stack_sorted(a))
+	{
+		if (stack_len(a) == 2)
+			sa(&a, false);
+		else if (stack_len(a) == 3)
+			sort_three(&a);
+		else
+			push_swap(&a, &b);
+	}
+	free_stack(&a);
 }
