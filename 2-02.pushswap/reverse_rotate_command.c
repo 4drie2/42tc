@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:32:19 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/27 16:44:57 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:57:00 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	reverse_rotate(t_stack_node **stack)
 	len = stack_len(*stack);
 	if (!*stack || !stack || len == 1)
 		return ;
-	last = find_last_nodes(*stack);
+	last = find_last_node(*stack);
 	last->prev->next = NULL;
 	last->next = *stack;
 	last->prev = NULL;

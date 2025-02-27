@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 15:04:29 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/27 16:21:56 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:56:01 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static void	set_target_node(t_stack_node *a, t_stack_node *b)
 		}
 		if (LONG_MAX == best_match_index)
 			b->target_node = find_smallest(a);
+		else
+			b->target_node = tagret_node;
 		b = b->next;
 	}
 }
