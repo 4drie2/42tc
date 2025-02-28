@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:21:42 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/27 11:46:48 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/02/28 13:58:19 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	push(t_stack_node **dest, t_stack_node **src)
 {
-	t_stack_node *node_to_push;
+	t_stack_node	*node_to_push;
 
 	if (!*src)
 		return ;

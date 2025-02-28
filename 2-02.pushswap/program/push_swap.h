@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 09:49:07 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/27 19:53:42 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/02/28 14:15:47 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,5 @@ void			rrb(t_stack_node **b, bool checker);
 void			rrr(t_stack_node **a, t_stack_node **b, bool checker);
 void			pa(t_stack_node **a, t_stack_node **b, bool checker);
 void			pb(t_stack_node **b, t_stack_node **a, bool checker);
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:05:55 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/27 19:13:26 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/02/28 13:57:16 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	sb(t_stack_node **b, bool checker)
 		write(1, "sb\n", 3);
 }
 
-void ss(t_stack_node **a, t_stack_node **b, bool checker)
+void	ss(t_stack_node **a, t_stack_node **b, bool checker)
 {
 	swap(a);
 	swap(b);

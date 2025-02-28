@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:38:38 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/27 19:59:43 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/02/28 13:56:55 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_stack_node	*return_cheapest(t_stack_node *stack)
 	while (stack)
 	{
 		if (stack->chaepest)
-			return(stack);
+			return (stack);
 		stack = stack->next;
 	}
 	return (NULL);

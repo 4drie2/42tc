@@ -6,13 +6,13 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:14:26 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/27 20:01:02 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/02/28 13:56:12 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool stack_sorted(t_stack_node *stack)
+bool	stack_sorted(t_stack_node *stack)
 {
 	if (!stack)
 		return (1);

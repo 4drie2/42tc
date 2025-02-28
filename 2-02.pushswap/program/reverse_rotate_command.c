@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:32:19 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/27 19:57:00 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/02/28 14:01:25 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	rrb(t_stack_node **b, bool checker)
 		write(1, "rrb\n", 4);
 }
 
-void rrr(t_stack_node **a, t_stack_node **b, bool checker)
+void	rrr(t_stack_node **a, t_stack_node **b, bool checker)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);

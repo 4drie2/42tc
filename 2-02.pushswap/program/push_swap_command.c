@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:47:18 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/27 14:33:55 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/02/28 14:00:59 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	rotate_both(t_stack_node **a, t_stack_node **b,
 	set_current_position(*b);
 }
 
-static void reverse_rotate_both(t_stack_node **a, t_stack_node **b,
+static void	reverse_rotate_both(t_stack_node **a, t_stack_node **b,
 									t_stack_node *cheapest_node)
 {
 	while (*a != cheapest_node->target_node && *b != cheapest_node)
@@ -60,7 +60,7 @@ static void	move_nodes(t_stack_node **a, t_stack_node **b)
 	if (cheapest_node->above_median && cheapest_node->target_node->above_median)
 		rotate_both(a, b, cheapest_node);
 	else if (!(cheapest_node->above_median)
-				&& !(cheapest_node->target_node->above_median))
+		&& !(cheapest_node->target_node->above_median))
 		reverse_rotate_both(a, b, cheapest_node);
 	finish_rotation(b, cheapest_node, 'b');
 	finish_rotation(a, cheapest_node->target_node, 'a');

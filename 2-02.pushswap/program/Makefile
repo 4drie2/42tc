@@ -6,7 +6,7 @@
 #    By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/27 19:47:46 by abidaux           #+#    #+#              #
-#    Updated: 2025/02/27 19:48:56 by abidaux          ###   ########.fr        #
+#    Updated: 2025/02/28 15:14:14 by abidaux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,16 +30,18 @@ $(ARCHIVE) : $(OBJS)
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# bonus :
-# 	cd ../checker && make
+bonus :
+	cd ../checker && make
 
 clean :
-	rm -f $(OBJS) $(ARCHIVE)
+	rm -f $(OBJS)
+	cd ../checker && make clean
 
 fclean : clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(ARCHIVE)
 	cd ../checker && make fclean
 
 re : fclean all
 
-.PHONY : all clean fclea re
+.PHONY: all clean fclean re bonus
+

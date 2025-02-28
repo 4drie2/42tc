@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 15:04:29 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/27 19:56:01 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/02/28 14:02:04 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ static void	set_target_node(t_stack_node *a, t_stack_node *b)
 	t_stack_node	*tagret_node;
 	long			best_match_index;
 
-	while(b)
+	while (b)
 	{
 		best_match_index = LONG_MAX;
 		current_a = a;
 		while (current_a)
 		{
 			if (current_a->value > b->value
-					&& current_a->value < best_match_index)
+				&& current_a->value < best_match_index)
 			{
 				best_match_index = current_a->value;
 				tagret_node = current_a;
