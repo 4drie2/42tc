@@ -6,7 +6,7 @@
 #    By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/28 14:52:58 by abidaux           #+#    #+#              #
-#    Updated: 2025/02/28 15:13:30 by abidaux          ###   ########.fr        #
+#    Updated: 2025/02/28 16:00:34 by abidaux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ clean :
 
 fclean : clean
 	rm -f $(NAME)
+	cd ../program && rm -f $(NAME)
 
 re : fclean all
 

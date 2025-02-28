@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 14:03:01 by abidaux           #+#    #+#             */
-/*   Updated: 2025/02/28 14:57:51 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/02/28 16:30:43 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	parse_command(t_stack_node **a, t_stack_node **b, char *command)
 		error(a, b);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_stack_node	*a;
 	t_stack_node	*b;
